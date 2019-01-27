@@ -19,8 +19,8 @@
   export default {
     name: "index",
     created() {
-      // 检测会员有没有登录
-      if (!store.state.user.id) {
+      // 检测是否有code
+      if (!this.$route.query.code) {
         let ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
           // 跳转到微信授权页面
@@ -35,7 +35,7 @@
             });
         }
       } else {
-        // 如果有token 但是vuex中没有用户登录信息则做登录操作
+        // 如果有code 获取用户信息
         this.login()
       }
     },
@@ -45,7 +45,11 @@
         this.$http.post(getUserInfo)
           .then(function (response) {
             if (response.body.code === 200) {
-              this.$store.commit('setUserInfo', response.header.UserInfoVo)
+              this.$store.commit('setUserInfo', response.header.UserInfoVo);
+              //回到首页
+              this.$router.push({
+                path: '/',
+              })
             }
           })
           .catch(function (error) {

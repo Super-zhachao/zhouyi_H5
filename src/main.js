@@ -10,10 +10,10 @@ import {Popup, Picker, DatetimePicker} from 'vant';
 import 'vant/lib/index.css';
 
 Vue.prototype.$http = Axios;
-Axios.interceptors.request.use(function(request) {
+Axios.interceptors.request.use(function (request) {
   request.withCredentials = true
   return request
-}, function(error) {
+}, function (error) {
   return Promise.reject(error)
 })
 
@@ -31,14 +31,13 @@ const router = new VueRouter({
   routes: routes
 });
 
-/*
-router.beforeEach((to, from, next) => {
-  if (!store.state.user.id && to.path != '/author') {
-    next('/author');
-    return false
-  }
-  next()
-});*/
+// router.beforeEach((to, from, next) => {
+//   if (!store.state.user.id && to.path != '/author') {
+//     next('/author');
+//     return false
+//   }
+//   next()
+// });
 
 new Vue({
   el: '#app',

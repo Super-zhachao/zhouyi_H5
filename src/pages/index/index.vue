@@ -260,7 +260,7 @@
         let that = this;
         let param = new URLSearchParams();
         param.append('sex', this.sex);
-        param.append('address', this.address);
+        param.append('address', this.location[0] + this.location[1]);
         param.append('birthday', birthday);
         this.$http.post(executeForecast, param)
           .then(function (response) {
@@ -503,7 +503,7 @@
         let that = this;
         let param = new URLSearchParams();
         param.append('sex', this.sex);
-        param.append('address', this.address);
+        param.append('address', this.location[0] + this.location[1]);
         param.append('birthday', birthday);
         this.$http.post(executeForecast, param)
           .then(function (response) {
